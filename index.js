@@ -94,7 +94,8 @@ const showMenu = () => {
   console.log("1. Crear QR para Wi-Fi");
   console.log("2. Crear QR para texto o enlace");
   console.log("3. Crear QR para WhatsApp");
-  console.log("4. Salir\n");
+  console.log("4. Crear QR para contacto (VCARD)");
+  console.log("5. Salir\n");
 
   rl.question("Opción: ", handleMenuSelection);
 };
@@ -127,6 +128,10 @@ const handleMenuSelection = (option) => {
       break;
 
     case '4':
+      generateContactQR();
+      break;
+
+    case '5':
       console.log("Saliendo del programa...");
       rl.close();
       break;
@@ -137,41 +142,45 @@ const handleMenuSelection = (option) => {
   }
 };
 
-// Función para generar QR para Wi-Fi
-const generateWifiQR = () => {
-  rl.question("Introduce el nombre de la red (SSID): ", (ssid) => {
-    rl.question("Introduce la contraseña: ", (password) => {
-      rl.question("Tipo de seguridad (WPA/WPA2/WEP o dejar vacío para abierta): ", (encryption) => {
-        const wifiData = `WIFI:T:${encryption || 'nopass'};S:${ssid};P:${password};;`;
-        selectSavePath((savePath) => {
-          console.log("\nSelecciona el color de los puntitos:");
-          selectColor((dotsColor) => {
-            console.log("\nSelecciona el color de fondo:");
-            selectColor((bgColor) => {
-              const options = { dotsColor: dotsColor, bgColor: bgColor };
-              generateQRCode(wifiData, 'qr-wifi.png', savePath, options);
-              rl.close();
-            });
-          });
-        });
-      });
-    });
-  });
-};
+const generateContactQR = () => {
+  rl.question("Introduce el nombre del contacto (Nombre y Apellidos): ", (fullName) => {
+    rl.question("Introduce el número de teléfono: ", (phone) => {
+      rl.question("Introduce el correo electrónico: ", (email) => {
+        rl.question("Introduce la empresa (opcional): ", (organization) => {
+          rl.question("Introduce el sitio web (opcional): ", (website) => {
+            // Separar nombre y apellidos (si hay más de una palabra, asumir que son apellidos)
+            const nameParts = fullName.trim().split(' ');
+            const firstName = nameParts[0]; // Primer nombre
+            let lastName = '';
 
-// Función para generar QR de WhatsApp
-const generateWhatsAppQR = () => {
-  rl.question("Introduce tu número de WhatsApp (incluyendo código de país): ", (phoneNumber) => {
-    rl.question("Introduce un mensaje predeterminado (opcional, dejar vacío si no quieres incluir mensaje): ", (message) => {
-      const whatsappLink = `https://wa.me/${phoneNumber}${message ? `?text=${encodeURIComponent(message)}` : ''}`;
-      selectSavePath((savePath) => {
-        console.log("\nSelecciona el color de los puntitos:");
-        selectColor((dotsColor) => {
-          console.log("\nSelecciona el color de fondo:");
-          selectColor((bgColor) => {
-            const options = { dotsColor: dotsColor, bgColor: bgColor };
-            generateQRCode(whatsappLink, 'qr-whatsapp.png', savePath, options);
-            rl.close();
+            if (nameParts.length > 1) {
+              lastName = nameParts.slice(1).join(' '); // Asume que el resto son apellidos
+            }
+
+            // Creación del formato VCARD correcto
+            const vCardData = `
+BEGIN:VCARD
+VERSION:3.0
+N:${lastName};${firstName};;;
+FN:${fullName}
+TEL:${phone}
+EMAIL:${email}
+${organization ? `ORG:${organization}` : ''}
+${website ? `URL:${website}` : ''}
+END:VCARD
+            `.trim();
+
+            selectSavePath((savePath) => {
+              console.log("\nSelecciona el color de los puntitos:");
+              selectColor((dotsColor) => {
+                console.log("\nSelecciona el color de fondo:");
+                selectColor((bgColor) => {
+                  const options = { dotsColor: dotsColor, bgColor: bgColor };
+                  generateQRCode(vCardData, 'qr-contact.png', savePath, options);
+                  rl.close();
+                });
+              });
+            });
           });
         });
       });
