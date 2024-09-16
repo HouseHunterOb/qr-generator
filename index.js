@@ -93,7 +93,8 @@ const showMenu = () => {
   console.log("Selecciona una opción:");
   console.log("1. Crear QR para Wi-Fi");
   console.log("2. Crear QR para texto o enlace");
-  console.log("3. Salir\n");
+  console.log("3. Crear QR para WhatsApp");
+  console.log("4. Salir\n");
 
   rl.question("Opción: ", handleMenuSelection);
 };
@@ -122,6 +123,10 @@ const handleMenuSelection = (option) => {
       break;
 
     case '3':
+      generateWhatsAppQR();
+      break;
+
+    case '4':
       console.log("Saliendo del programa...");
       rl.close();
       break;
@@ -147,6 +152,26 @@ const generateWifiQR = () => {
               generateQRCode(wifiData, 'qr-wifi.png', savePath, options);
               rl.close();
             });
+          });
+        });
+      });
+    });
+  });
+};
+
+// Función para generar QR de WhatsApp
+const generateWhatsAppQR = () => {
+  rl.question("Introduce tu número de WhatsApp (incluyendo código de país): ", (phoneNumber) => {
+    rl.question("Introduce un mensaje predeterminado (opcional, dejar vacío si no quieres incluir mensaje): ", (message) => {
+      const whatsappLink = `https://wa.me/${phoneNumber}${message ? `?text=${encodeURIComponent(message)}` : ''}`;
+      selectSavePath((savePath) => {
+        console.log("\nSelecciona el color de los puntitos:");
+        selectColor((dotsColor) => {
+          console.log("\nSelecciona el color de fondo:");
+          selectColor((bgColor) => {
+            const options = { dotsColor: dotsColor, bgColor: bgColor };
+            generateQRCode(whatsappLink, 'qr-whatsapp.png', savePath, options);
+            rl.close();
           });
         });
       });
