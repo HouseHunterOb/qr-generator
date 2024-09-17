@@ -76,7 +76,30 @@
                 <div id="form-fields">
                     <!-- Aquí se cargarán los campos dinámicamente según el tipo de QR -->
                 </div>
+
+                <!-- Botón para generar QR -->
                 <button class="generate-btn">Generar Código QR</button>
+            </div>
+        </div>
+
+        <!-- Controles de diseño del QR -->
+        <div id="qr-design-controls">
+            <h3>Personaliza tu QR</h3>
+            <div class="form-group">
+                <label for="qr-color">Color del QR:</label>
+                <input type="color" id="qr-color">
+            </div>
+            <div class="form-group">
+                <label for="qr-shape">Forma del QR:</label>
+                <select id="qr-shape">
+                    <option value="square">Cuadrado</option>
+                    <option value="rounded">Redondeado</option>
+                    <option value="dots">Puntitos</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="qr-logo">Subir logo (opcional):</label>
+                <input type="file" id="qr-logo">
             </div>
         </div>
     </section>

@@ -70,7 +70,7 @@ function generateForm(type) {
                 <textarea id="message" placeholder="Escribe tu mensaje aquí..."></textarea>
             </div>`;
     }
-    // Añadir más opciones de formularios según el tipo de QR (Bitcoin, Evento, Facebook, etc.)
+    // Añadir más opciones de formularios según el tipo de QR
 }
 
 function capitalize(str) {
