@@ -1,140 +1,129 @@
-/* Reseteo básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Fuente general */
+/* Estilos básicos */
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #E6E6FA; /* Fondo pastel */
+  background-color: #E6E6FA;
+  margin: 0;
+  padding: 0;
 }
 
-/* Navbar styles */
 .navbar {
+  background-color: #fff;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  background-color: #E6E6FA;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.brand-name {
-  font-size: 28px;
+.menu-container .brand-name {
+  font-size: 24px;
   font-weight: 600;
-  color: #4B0082;
 }
 
 .nav-links {
+  list-style-type: none;
   display: flex;
-  list-style: none;
 }
 
 .nav-links li {
-  margin: 0 20px;
+  margin-left: 20px;
 }
 
-.nav-links a {
+.nav-links li a {
   text-decoration: none;
-  color: #4B0082;
-  font-size: 18px;
+  font-weight: 600;
+  color: #333;
 }
 
-.nav-links a:hover {
-  color: #FF4500;
-}
-
-/* Hero section */
 .hero {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px;
-  background-color: #F8F8FF;
+  height: 80vh;
+  background-color: #E6E6FA;
 }
 
 .hero-content {
-  width: 100%;
-  max-width: 1200px;
   text-align: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
 }
 
 h2 {
-  color: #4B0082;
   font-size: 32px;
+  font-weight: 600;
   margin-bottom: 20px;
 }
 
 p {
-  color: #4B0082;
   font-size: 18px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
-/* Opciones de QR en cuadritos */
 .qr-grid-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 10px;
   margin-bottom: 30px;
 }
 
 .qr-option {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .qr-option:hover {
-  background-color: #FF4500;
-  color: white;
+  background-color: #dcdcdc;
 }
 
 .qr-option i {
-  font-size: 36px;
+  font-size: 24px;
   margin-bottom: 10px;
 }
 
 .qr-option span {
   font-size: 16px;
+  font-weight: 500;
 }
 
-/* Input Section */
 .qr-input-section {
   margin-top: 30px;
-  text-align: center;
 }
 
-.qr-input-section h3 {
-  color: #4B0082;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.input-qr {
-  width: 50%;
+.qr-input-section input,
+.qr-input-section select {
+  width: 100%;
   padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  font-size: 18px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .generate-btn {
+  margin-top: 20px;
   padding: 10px 20px;
-  background-color: #4B0082;
+  background-color: #5cb85c;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 18px;
 }
 
 .generate-btn:hover {
-  background-color: #FF4500;
+  background-color: #4cae4c;
+}
+
+#form-container h3 {
+  font-size: 18px;
+  color: #777;
 }
