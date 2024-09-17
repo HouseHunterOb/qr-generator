@@ -1,87 +1,78 @@
-// Seleccionar las opciones de QR
-document.querySelectorAll('.qr-option').forEach(option => {
+const qrOptions = document.querySelectorAll('.qr-option');
+const formContainer = document.getElementById('form-fields');
+const formTitle = document.getElementById('form-title');
+const formDescription = document.getElementById('form-description');
+
+qrOptions.forEach(option => {
     option.addEventListener('click', () => {
         const type = option.getAttribute('data-type');
-        displayForm(type);
+        generateForm(type);
     });
 });
 
-// Mostrar formulario dinámico
-function displayForm(type) {
-    const formContainer = document.getElementById('dynamic-form');
-    formContainer.innerHTML = ''; // Limpiar el formulario actual
+function generateForm(type) {
+    formContainer.innerHTML = ''; // Limpiar formulario
+    formTitle.innerHTML = `Código QR ${capitalize(type)}`;
+    formDescription.innerHTML = `Ingresa los datos para generar el código QR ${type}.`;
 
-    switch(type) {
-        case 'url':
-            formContainer.innerHTML = `
-                <label for="url">Ingresa la URL:</label>
-                <input type="text" id="url" placeholder="https://example.com">
-            `;
-            break;
-        case 'vcard':
-            formContainer.innerHTML = `
-                <label for="name">Nombre Completo:</label>
-                <input type="text" id="name" placeholder="John Doe">
-                <label for="phone">Número de Teléfono:</label>
-                <input type="text" id="phone" placeholder="+521234567890">
+    if (type === 'url') {
+        formContainer.innerHTML = `
+            <div class="form-group">
+                <label for="url">URL:</label>
+                <input type="text" id="url" placeholder="https://tusitio.com">
+            </div>`;
+    } else if (type === 'vcard') {
+        formContainer.innerHTML = `
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" placeholder="Nombre completo">
+            </div>
+            <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" placeholder="example@example.com">
-            `;
-            break;
-        case 'text':
-            formContainer.innerHTML = `
-                <label for="text">Ingresa el texto:</label>
-                <input type="text" id="text" placeholder="Escribe tu texto aquí">
-            `;
-            break;
-        case 'email':
-            formContainer.innerHTML = `
-                <label for="email">Email de destino:</label>
-                <input type="email" id="email" placeholder="example@example.com">
-            `;
-            break;
-        case 'wifi':
-            formContainer.innerHTML = `
-                <label for="ssid">Nombre de la red (SSID):</label>
-                <input type="text" id="ssid" placeholder="Mi WiFi">
+                <input type="email" id="email" placeholder="ejemplo@correo.com">
+            </div>
+            <div class="form-group">
+                <label for="phone">Teléfono:</label>
+                <input type="text" id="phone" placeholder="Número de teléfono">
+            </div>`;
+    } else if (type === 'email') {
+        formContainer.innerHTML = `
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Correo electrónico">
+            </div>
+            <div class="form-group">
+                <label for="subject">Asunto:</label>
+                <input type="text" id="subject" placeholder="Asunto del mensaje">
+            </div>
+            <div class="form-group">
+                <label for="message">Mensaje:</label>
+                <textarea id="message" placeholder="Escribe tu mensaje aquí..."></textarea>
+            </div>`;
+    } else if (type === 'wifi') {
+        formContainer.innerHTML = `
+            <div class="form-group">
+                <label for="ssid">Nombre de la Red (SSID):</label>
+                <input type="text" id="ssid" placeholder="Nombre de la red">
+            </div>
+            <div class="form-group">
                 <label for="password">Contraseña:</label>
-                <input type="text" id="password" placeholder="Contraseña del WiFi">
-                <label for="encryption">Encriptación:</label>
-                <select id="encryption">
-                    <option value="WPA">WPA/WPA2</option>
-                    <option value="WEP">WEP</option>
-                    <option value="nopass">Sin contraseña</option>
-                </select>
-            `;
-            break;
-        case 'bitcoin':
-            formContainer.innerHTML = `
-                <label for="btc-address">Dirección Bitcoin:</label>
-                <input type="text" id="btc-address" placeholder="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">
-            `;
-            break;
-        case 'event':
-            formContainer.innerHTML = `
-                <label for="event-name">Nombre del Evento:</label>
-                <input type="text" id="event-name" placeholder="Mi Evento">
-                <label for="date">Fecha:</label>
-                <input type="date" id="date">
-            `;
-            break;
-        case 'facebook':
-            formContainer.innerHTML = `
-                <label for="fb-page">Página de Facebook:</label>
-                <input type="text" id="fb-page" placeholder="https://facebook.com/mipagina">
-            `;
-            break;
-        default:
-            formContainer.innerHTML = '<p>Selecciona una opción para generar un QR.</p>';
+                <input type="text" id="password" placeholder="Contraseña de la red">
+            </div>`;
+    } else if (type === 'sms') {
+        formContainer.innerHTML = `
+            <div class="form-group">
+                <label for="phone">Teléfono:</label>
+                <input type="text" id="phone" placeholder="Número de teléfono">
+            </div>
+            <div class="form-group">
+                <label for="message">Mensaje:</label>
+                <textarea id="message" placeholder="Escribe tu mensaje aquí..."></textarea>
+            </div>`;
     }
+    // Añadir más opciones de formularios según el tipo de QR (Bitcoin, Evento, Facebook, etc.)
 }
 
-// Evento para el botón de generar QR
-document.getElementById('generate-qr-btn').addEventListener('click', () => {
-    const formData = new FormData(document.querySelector('#dynamic-form'));
-    console.log('Datos del formulario:', formData);
-    // Aquí iría la lógica para enviar los datos al backend y generar el QR
-});
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}

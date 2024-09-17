@@ -14,23 +14,12 @@
         <div class="menu-container">
             <span class="brand-name">QReative</span>
         </div>
-        <ul class="nav-links">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Generar QR</a></li>
-            <li><a href="#">Servicios</a></li>
-            <li><a href="#">Precios</a></li>
-            <li><a href="#">Contacto</a></li>
-            <li><a href="#">Iniciar Sesión</a></li>
-        </ul>
     </nav>
 
     <!-- Sección principal (Hero Section) -->
     <section class="hero">
         <div class="hero-content">
-            <h2>Genera tu Código QR</h2>
-            <p>Selecciona el tipo de código QR que deseas generar y personaliza tu código.</p>
-
-            <!-- Opciones de QR -->
+            <!-- Opciones de QR (lado izquierdo) -->
             <div class="qr-grid-container">
                 <div class="qr-option" data-type="url">
                     <i class="fas fa-link"></i>
@@ -64,13 +53,30 @@
                     <i class="fab fa-facebook"></i>
                     <span>Facebook</span>
                 </div>
+                <div class="qr-option" data-type="sms">
+                    <i class="fas fa-sms"></i>
+                    <span>SMS</span>
+                </div>
+                <div class="qr-option" data-type="twitter">
+                    <i class="fab fa-twitter"></i>
+                    <span>Twitter</span>
+                </div>
+                <div class="qr-option" data-type="instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </div>
             </div>
 
-            <!-- Formulario dinámico -->
-            <div id="form-container" class="qr-input-section">
-                <h3>Ingresa los datos para generar tu QR:</h3>
-                <div id="dynamic-form"></div>
-                <button class="generate-btn" id="generate-qr-btn">Generar Código QR</button>
+            <!-- Formulario (lado derecho) -->
+            <div id="form-container">
+                <h3 id="form-title">Selecciona una opción para generar tu QR</h3>
+                <p id="form-description">Selecciona una opción de las de arriba y completa los datos para generar el QR correspondiente.</p>
+
+                <!-- Formulario dinámico -->
+                <div id="form-fields">
+                    <!-- Aquí se cargarán los campos dinámicamente según el tipo de QR -->
+                </div>
+                <button class="generate-btn">Generar Código QR</button>
             </div>
         </div>
     </section>
