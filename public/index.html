@@ -3,107 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QReative - Generador de Códigos QR</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>QReative - Generador de Códigos QR Avanzado</title>
+    <!-- Enlace de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Hoja de estilos personalizada -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Barra de navegación -->
-    <nav class="navbar">
-        <div class="menu-container">
-            <span class="brand-name">QReative</span>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #2C3E50;">
+        <div class="container">
+            <a class="navbar-brand" href="#">QReative</a>
+            <div>
+                <a href="#" class="btn btn-outline-light">Iniciar sesión</a>
+                <a href="#" class="btn btn-light ms-2">Regístrate</a>
+            </div>
         </div>
     </nav>
 
-    <!-- Sección principal (Hero Section) -->
-    <section class="hero">
-        <div class="hero-content">
-            <!-- Opciones de QR (lado izquierdo) -->
-            <div class="qr-grid-container">
-                <div class="qr-option" data-type="url">
-                    <i class="fas fa-link"></i>
-                    <span>URL</span>
-                </div>
-                <div class="qr-option" data-type="vcard">
-                    <i class="fas fa-id-card"></i>
-                    <span>VCard</span>
-                </div>
-                <div class="qr-option" data-type="text">
-                    <i class="fas fa-file-alt"></i>
-                    <span>Texto</span>
-                </div>
-                <div class="qr-option" data-type="email">
-                    <i class="fas fa-envelope"></i>
-                    <span>Email</span>
-                </div>
-                <div class="qr-option" data-type="wifi">
-                    <i class="fas fa-wifi"></i>
-                    <span>Wi-Fi</span>
-                </div>
-                <div class="qr-option" data-type="bitcoin">
-                    <i class="fab fa-bitcoin"></i>
-                    <span>Bitcoin</span>
-                </div>
-                <div class="qr-option" data-type="event">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span>Evento</span>
-                </div>
-                <div class="qr-option" data-type="facebook">
-                    <i class="fab fa-facebook"></i>
-                    <span>Facebook</span>
-                </div>
-                <div class="qr-option" data-type="sms">
-                    <i class="fas fa-sms"></i>
-                    <span>SMS</span>
-                </div>
-                <div class="qr-option" data-type="twitter">
-                    <i class="fab fa-twitter"></i>
-                    <span>Twitter</span>
-                </div>
-                <div class="qr-option" data-type="instagram">
-                    <i class="fab fa-instagram"></i>
-                    <span>Instagram</span>
-                </div>
-            </div>
-
-            <!-- Formulario (lado derecho) -->
-            <div id="form-container">
-                <h3 id="form-title">Selecciona una opción para generar tu QR</h3>
-                <p id="form-description">Selecciona una opción de las de arriba y completa los datos para generar el QR correspondiente.</p>
-
-                <!-- Formulario dinámico -->
-                <div id="form-fields">
-                    <!-- Aquí se cargarán los campos dinámicamente según el tipo de QR -->
+    <!-- Sección principal -->
+    <section class="container my-5">
+        <div class="row">
+            <!-- Opciones de QR -->
+            <div class="col-md-6">
+                <h3 class="mb-4">Genera tu Código QR</h3>
+                <div class="d-flex flex-wrap justify-content-between gap-2">
+                    <button class="qr-option btn" data-type="url" title="URL">
+                        <i class="fas fa-globe"></i><br>URL
+                    </button>
+                    <button class="qr-option btn" data-type="text" title="Texto">
+                        <i class="fas fa-file-alt"></i><br>Texto
+                    </button>
+                    <button class="qr-option btn" data-type="wifi" title="Wi-Fi">
+                        <i class="fas fa-wifi"></i><br>Wi-Fi
+                    </button>
+                    <button class="qr-option btn" data-type="vcard" title="VCard">
+                        <i class="fas fa-id-card"></i><br>VCard
+                    </button>
+                    <button class="qr-option btn" data-type="email" title="Email">
+                        <i class="fas fa-envelope"></i><br>Email
+                    </button>
+                    <button class="qr-option btn" data-type="whatsapp" title="Whatsapp">
+                        <i class="fas fa-phone"></i><br>Whatsapp
+                    </button>
+                    <button class="qr-option btn" data-type="sms" title="SMS">
+                        <i class="fas fa-sms"></i><br>SMS
+                    </button>
+                    <button class="qr-option btn" data-type="pdf" title="PDF">
+                        <i class="fas fa-file-pdf"></i><br>PDF
+                    </button>
+                    <button class="qr-option btn" data-type="product" title="Producto">
+                        <i class="fas fa-box"></i><br>Producto
+                    </button>
+                    <button class="qr-option btn" data-type="images" title="Imágenes">
+                        <i class="fas fa-image"></i><br>Imágenes
+                    </button>
+                    <button class="qr-option btn btn-outline-primary" data-type="more" title="Más opciones">
+                        Ver más
+                    </button>
                 </div>
 
-                <!-- Botón para generar QR -->
-                <button class="generate-btn">Generar Código QR</button>
+                <!-- Textarea dinámica -->
+                <textarea id="qr-input" class="form-control mt-4 custom-textarea" rows="3" placeholder="Escribe tu texto aquí..."></textarea>
             </div>
-        </div>
 
-        <!-- Controles de diseño del QR -->
-        <div id="qr-design-controls">
-            <h3>Personaliza tu QR</h3>
-            <div class="form-group">
-                <label for="qr-color">Color del QR:</label>
-                <input type="color" id="qr-color">
-            </div>
-            <div class="form-group">
-                <label for="qr-shape">Forma del QR:</label>
-                <select id="qr-shape">
-                    <option value="square">Cuadrado</option>
-                    <option value="rounded">Redondeado</option>
-                    <option value="dots">Puntitos</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="qr-logo">Subir logo (opcional):</label>
-                <input type="file" id="qr-logo">
+            <!-- Previsualización y configuración del QR -->
+            <div class="col-md-6 text-center">
+                <div class="card p-4 shadow">
+                    <h5 class="mb-4">Previsualización</h5>
+                    <img src="https://via.placeholder.com/150" alt="Previsualización QR" class="mb-4 img-fluid qr-preview-small" id="qr-preview">
+
+                    <h6 class="mb-3">Personalización del QR</h6>
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <label for="qr-color" class="form-label">Color</label>
+                            <input type="color" id="qr-color" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label for="qr-shape" class="form-label">Forma</label>
+                            <select id="qr-shape" class="form-select">
+                                <option value="square">Cuadrado</option>
+                                <option value="rounded">Redondeado</option>
+                                <option value="dots">Puntitos</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Carga de logotipo -->
+                    <div class="mb-4">
+                        <label for="qr-logo" class="form-label">Subir logotipo (opcional)</label>
+                        <input type="file" id="qr-logo" class="form-control">
+                    </div>
+
+                    <!-- Botones de descarga -->
+                    <button class="btn btn-primary w-100 mb-2" id="download-jpg">Descargar JPG</button>
+                    <button class="btn btn-outline-primary w-100" id="download-vector">Descargar Vector (SVG/PNG)</button>
+                </div>
             </div>
         </div>
     </section>
 
-    <script src="./src/app.js"></script>
+    <!-- Enlace a los scripts -->
+    <script src="js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

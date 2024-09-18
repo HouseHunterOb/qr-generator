@@ -1,157 +1,62 @@
-/* Estilos básicos */
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #E6E6FA;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar {
-  background-color: #fff;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.menu-container .brand-name {
-  font-size: 24px;
-  font-weight: 600;
-}
-
-/* Hero Section */
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  background-color: #E6E6FA;
-  padding: 20px;
-}
-
-.hero-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 20px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  max-width: 1200px;
-}
-
-/* Opciones de QR */
-.qr-grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  width: 45%;
-}
-
 .qr-option {
+  background-color: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  width: 120px;
+  height: 100px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 15px;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.qr-option:hover {
-  background-color: #dcdcdc;
+  align-items: center;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333333;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .qr-option i {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 28px;
+  color: #2980B9;
+  margin-bottom: 8px;
 }
 
-.qr-option span {
-  font-size: 16px;
-  font-weight: 500;
+.qr-option:hover {
+  background-color: #F0F8FF;
+  border-color: #2980B9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Formulario */
-#form-container {
-  width: 50%;
+.qr-option:focus,
+.qr-option:active {
+  outline: none;
+  border-color: #2980B9;
+  background-color: #F0F8FF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-#form-title {
-  font-size: 24px;
+.btn-outline-primary {
   font-weight: 600;
-  margin-bottom: 20px;
-}
-
-#form-description {
-  font-size: 16px;
-  color: #777;
-  margin-bottom: 30px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-.form-group input, .form-group select, .form-group textarea {
-  padding: 12px;
+  color: #2980B9;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-textarea {
-  resize: none;
-  height: 80px;
+.custom-textarea {
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Botón para generar QR */
-.generate-btn {
-  background-color: #5cb85c;
-  color: white;
-  padding: 15px 25px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 16px;
+.qr-preview-small {
+  max-width: 150px;
+  max-height: 150px;
+  margin: 0 auto;
+  display: block;
+}
+
+.card {
+  border-radius: 15px;
+  border: 1px solid #e1e1e1;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
-  width: 100%;
-  text-align: center;
-}
-
-.generate-btn:hover {
-  background-color: #4cae4c;
-}
-
-/* Controles de diseño del QR */
-#qr-design-controls {
-  width: 100%;
-  max-width: 1200px;
-  padding: 20px;
-  margin-top: 30px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#qr-design-controls h3 {
-  font-size: 22px;
-  margin-bottom: 20px;
-}
-
-#qr-design-controls .form-group {
-  margin-bottom: 15px;
 }
