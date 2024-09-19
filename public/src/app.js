@@ -1,82 +1,55 @@
-// Variables de selección
+const ssidInput = document.getElementById('ssid');
+const passwordInput = document.getElementById('password');
+const securitySelect = document.getElementById('security');
+const qrPreview = document.getElementById('qr-preview');
 const qrColorPicker = document.getElementById('qr-color');
 const qrShapeSelector = document.getElementById('qr-shape');
-const qrLogoUploader = document.getElementById('qr-logo');
-const qrPreview = document.getElementById('qr-preview');
 const downloadJpgButton = document.getElementById('download-jpg');
-const downloadVectorButton = document.getElementById('download-vector');
-const textAreas = document.querySelectorAll('textarea');
+const downloadPngButton = document.getElementById('download-png');
+const downloadSvgButton = document.getElementById('download-svg');
 
-// Estado del QR
-let qrOptions = {
-    text: '',
-    color: '#000000',
-    shape: 'square',
-    logo: null,
-};
+// Función para generar el QR de Wi-Fi
+function generateQrCode() {
+    const ssid = ssidInput.value;
+    const password = passwordInput.value;
+    const security = securitySelect.value;
+    const color = qrColorPicker.value;
+    const shape = qrShapeSelector.value;
 
-// Evento para cambiar el color del QR
-qrColorPicker.addEventListener('input', (e) => {
-    qrOptions.color = e.target.value;
-    updateQrPreview();
-});
+    // Usar una API de QR (por ejemplo: https://goqr.me/api/doc/)
+    const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?data=WIFI:S:${ssid};T:${security};P:${password};;&size=200x200&color=${color.replace('#', '')}&shape=${shape}`;
 
-// Evento para cambiar la forma del QR
-qrShapeSelector.addEventListener('change', (e) => {
-    qrOptions.shape = e.target.value;
-    updateQrPreview();
-});
-
-// Evento para subir un logo
-qrLogoUploader.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onload = function(event) {
-        qrOptions.logo = event.target.result;
-        updateQrPreview();
-    };
-
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-});
-
-// Función para actualizar la previsualización del QR
-function updateQrPreview() {
-    // Simulación de generación de QR
-    let qrImageUrl = generateQrUrl(qrOptions.text, qrOptions.color, qrOptions.shape, qrOptions.logo);
     qrPreview.src = qrImageUrl;
 }
 
-// Simulación de generación de URL QR (placeholder)
-function generateQrUrl(text, color, shape, logo) {
-    return 'https://via.placeholder.com/150.png?text=QR+Code';
-}
+// Escucha los cambios en los campos del formulario
+ssidInput.addEventListener('input', generateQrCode);
+passwordInput.addEventListener('input', generateQrCode);
+securitySelect.addEventListener('change', generateQrCode);
+qrColorPicker.addEventListener('input', generateQrCode);
+qrShapeSelector.addEventListener('change', generateQrCode);
 
-// Evento para descargar el QR en JPG
+// Funciones de descarga (ejemplo simple, puedes usar canvas para más opciones)
 downloadJpgButton.addEventListener('click', () => {
     const link = document.createElement('a');
     link.href = qrPreview.src;
-    link.download = 'qr-code.jpg';
+    link.download = 'wifi-qr-code.jpg';
     link.click();
 });
 
-// Evento para descargar el QR en Vector (SVG/PNG)
-downloadVectorButton.addEventListener('click', () => {
+downloadPngButton.addEventListener('click', () => {
     const link = document.createElement('a');
     link.href = qrPreview.src;
-    link.download = 'qr-code.svg';
+    link.download = 'wifi-qr-code.png';
     link.click();
 });
 
-// Evento para cambiar el contenido del QR
-textAreas.forEach(textArea => {
-    textArea.addEventListener('input', (e) => {
-        qrOptions.text = e.target.value;
-        updateQrPreview();
-    });
+downloadSvgButton.addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.href = qrPreview.src;
+    link.download = 'wifi-qr-code.svg';
+    link.click();
 });
 
-// Previsualización inicial
-updateQrPreview();
+// Generar QR inicialmente
+generateQrCode();

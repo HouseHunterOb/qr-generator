@@ -1,62 +1,128 @@
-.qr-option {
-  background-color: #ffffff;
-  border: 1px solid #e1e1e1;
-  border-radius: 8px;
-  width: 120px;
-  height: 100px;
+/* Reseteo básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f4;
+  color: #2c3e50;
+  line-height: 1.6;
+}
+
+h3, h4 {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Estilo del navbar */
+.navbar {
+  background-color: #2c3e50;
+  padding: 1rem 2rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333333;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.qr-option i {
-  font-size: 28px;
-  color: #2980B9;
-  margin-bottom: 8px;
+.navbar-brand {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
 }
 
-.qr-option:hover {
-  background-color: #F0F8FF;
-  border-color: #2980B9;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+.navbar-brand:hover {
+  color: #ecf0f1;
 }
 
-.qr-option:focus,
-.qr-option:active {
+/* Sección principal */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.row {
+  display: flex;
+  gap: 2rem;
+}
+
+.col-md-6 {
+  flex: 1;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #dfe4ea;
+}
+
+input[type="color"] {
+  height: 3rem;
+}
+
+input:focus, select:focus {
   outline: none;
-  border-color: #2980B9;
-  background-color: #F0F8FF;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-color: #3498db;
+}
+
+/* Botones */
+button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
 }
 
 .btn-outline-primary {
-  font-weight: 600;
-  color: #2980B9;
-  border-radius: 8px;
+  background-color: transparent;
+  color: #3498db;
+  border: 2px solid #3498db;
 }
 
-.custom-textarea {
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.btn-outline-primary:hover {
+  background-color: #3498db;
+  color: #fff;
+}
+
+/* Previsualización del QR */
+.qr-preview {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .qr-preview-small {
-  max-width: 150px;
-  max-height: 150px;
+  max-width: 200px;
+  max-height: 200px;
   margin: 0 auto;
   display: block;
-}
-
-.card {
-  border-radius: 15px;
-  border: 1px solid #e1e1e1;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
